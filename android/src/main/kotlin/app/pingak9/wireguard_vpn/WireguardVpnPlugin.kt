@@ -211,7 +211,7 @@ class WireguardVpnPlugin: FlutterPlugin, MethodCallHandler ,ActivityAware,Plugin
                 //futureBackend.await().setState(MyTunnel(params.tunnel.name), params.tuTunnel.State.UP, config)
                 futureBackend.await().setState(
                     tunnel(params.tunnel.name) { state ->
-                        scope.launch(Dispatchers.Default) {
+                        scope.launch(Dispatchers.IO) {
                             Log.i(TAG, "onStateChange - $state")
                             channel?.invokeMethod(
                                 "onStateChange",
